@@ -1,0 +1,26 @@
+@import '../cv.css';
+/*32936f*/
+#group-header {
+    background-color: #32936f;
+}
+#cvo-profile-fullname {
+    color: #32936f;
+}
+#cvo-col-left {
+    background-color: #32936f;
+}
+#group-left {
+    background-color: #32936f;
+}
+#cvo-col-right .cvo-block-header span {
+    color: #32936f;
+}
+#cvo-col-right .cvo-block-header:after {
+    background-color: #32936f;
+}
+.contact-item-label {
+    color: #79CAAC;
+}
+.cvo-skillrate-bar {
+    background-color: #79CAAC;
+}
