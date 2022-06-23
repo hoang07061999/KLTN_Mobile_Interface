@@ -36,6 +36,8 @@ class Home extends Component {
       refreshing: true,
     });
     this.props.getTopic();
+    this.props.connectIo(this.socket);
+    this.props.handleDIspatchResuilt(this.socket);
     setTimeout(() => {
       if (this.props.listTopic) {
         this.setState({
@@ -61,12 +63,13 @@ class Home extends Component {
           <FlatList
             data={listTopic}
             renderItem={({item}) => (
-              <TouchableOpacity
+              item.ExamTest.length > 0 && <TouchableOpacity
                 style={{justifyContent: 'flex-start'}}
                 activeOpacity={0.5}
                 onPress={() => {
                   var random = Math.floor(Math.random() * item.ExamTest.length);
                   this.props.navigation.navigate('exercise', {
+                    title: item.name,
                     dataTest: item.ExamTest[random],socket: this.socket,
                   });
                 }}>
@@ -232,7 +235,7 @@ const mapDispatchToProps = (dispatch) => {
     handleDIspatchResuilt: async (socket) =>{
       socket.on('dispatchResuilt', (data)=>{
         console.log('handle', data);
-        dispatch({type: 'ENJECT_MEMBER_SUCCESS', payload: data.member});
+        dispatch({type: 'ENJECT_MEMBER_SUCCESS', payload: data});
       });
     },
   };

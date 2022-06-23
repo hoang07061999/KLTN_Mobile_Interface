@@ -95,6 +95,7 @@ const Reducer = (state = initData, action) => {
         isCreated: action.payload,
       };
     case ADD_RESUILT_MEMBER_SUCCESS:
+      console.log(action.payload, 'action');
       var index = -1;
       index = findID(state.history, action.payload._idTest);
       if (index !== -1) {

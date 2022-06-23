@@ -31,7 +31,9 @@ class Test extends Component {
     render() {
         const { history } = this.props;
         const { listtest } = this.state;
-        const { examYear } = this.props.route.params;
+        const { examYear, title } = this.props.route.params;
+
+        console.log(title);
 
         const correct = (id) => {
             for (let i = 0; i < history.length; i++)
@@ -48,7 +50,7 @@ class Test extends Component {
             {
                 if (history[i]._idTest === id)
                 {
-                    return history[i].percentComplete;
+                    return Math.round(history[i].percentComplete);
                 }
             }
             return null;
@@ -66,10 +68,14 @@ class Test extends Component {
         };
 
         const viewResuilt = (id,dataTest) =>{
+            console.log(id);
+            console.log(dataTest);
+            console.log(history);
             for (let i = 0; i < history.length; i++)
             {
-                if (history[i]._id === id)
+                if (history[i]._idTest === id)
                 {
+                    console.log('ok');
                     this.props.navigation.navigate('viewHistory', {dataTest: dataTest, resuilt: history[i]});
                     return history[i];
                 }
@@ -83,7 +89,7 @@ class Test extends Component {
                 <ExamYear data={examYear} _changeExamYear={this.changeExamYear}/>
                 { listtest ? listtest.tests.map((e,index) => {
                     return (
-                        <TouchableOpacity key={index} style={styles.content} onPress={() => this.props.navigation.navigate('exercise', {dataTest: e,socket: this.props.route.params.socket})}>
+                        <TouchableOpacity key={index} style={styles.content} onPress={() => this.props.navigation.navigate('exercise', {title: title, dataTest: e,socket: this.props.route.params.socket})}>
                         <View>
                             {percent(e._id) ? <ProgressComplete percent={percent(e._id)} /> : <ProgressComplete percent={0} />}
                         </View>

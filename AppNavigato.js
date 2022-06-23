@@ -104,7 +104,7 @@ class AppNavigator extends Component {
 
                 </Stack.Navigator> :
             <View style={styles.container}>
-              <Image style={styles.image} source={require('./assets/image/anhdemo.png')}/>
+              <Image style={styles.image} source={require('./assets/image/logo/logo.png')}/>
           </View>}
             </View>
         );
@@ -117,8 +117,8 @@ const styles =  StyleSheet.create({
       alignItems: 'center',
   },
   image: {
-      height: 80,
-      width: 80,
+      height: 100,
+      width: 100,
       borderRadius: 50,
   },
 });

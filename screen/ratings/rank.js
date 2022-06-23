@@ -39,13 +39,12 @@ class Rank extends Component {
     }
 
     star = (list) =>{
-        console.log('list',list);
         var resuilt = 0;
         for (let i = 0; i < list.length; i++ )
         {
             resuilt += Number(list[i].star);
         }
-        return resuilt;
+        return resuilt.toFixed(1);
     }
 
     sort = () =>{

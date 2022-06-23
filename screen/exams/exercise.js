@@ -106,7 +106,7 @@ class Exercise extends Component {
       currentQuestion: 0,
       _isRunning: false,
     });
-    const {dataTest} = this.props.route.params;
+    const {dataTest, title } = this.props.route.params;
     var percent = (this.state.isCorrect.length / this.state.data.length) * 100;
     var star = (5 / this.state.data.length) * this.state.isCorrect.length;
     var point =
@@ -126,7 +126,9 @@ class Exercise extends Component {
         'star': star,
         'time': timeComplete,
         'nameTest': dataTest.name,
+        'topicName': title,
     };
+    console.log('resuilt', resuilt);
     this.props.addResuilt({id:this.state._idMember,resuilt,socket: this.props.route.params.socket});
     this.setState({
         timer: 0,
@@ -658,14 +660,15 @@ const mapDispatchToProps = (dispatch) => {
   return {
     addResuilt: (data) => {
       const { socket,id,resuilt } = data;
-      console.log(socket);
-      console.log(id);
-      console.log(resuilt);
-      socket.emit('addResuilt', {id}, resuilt);
-      dispatch({type: 'ADD_RESUILT_MEMBER_REQUEST', data});
-      socket.on('getAllMembers',function(members){
-        dispatch({type: 'ALL_MEMBER_SUCCESS', payload: members});
+      socket.emit('addResuilt', {id}, resuilt, (res) => {
+        console.log(res);
+
       });
+      // socket.on('getAllMembers',function(members){
+      //   console.log(members);
+      //   dispatch({type: 'ALL_MEMBER_SUCCESS', payload: members});
+      // });
+      dispatch({type: 'ADD_RESUILT_MEMBER_SUCCESS', payload: resuilt});
     },
   };
 };

@@ -49,7 +49,7 @@ class HeaderHome extends Component {
             {
                 resuilt += Number(history[i].star);
             }
-            return resuilt;
+            return resuilt.toFixed(1);
         };
         return (
             <View style={styles.container}>

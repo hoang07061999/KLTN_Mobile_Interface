@@ -50,7 +50,7 @@ class OldTest extends Component {
         >
           <FlatList
             data={listTopic}
-            renderItem={({ item }) => <TouchableOpacity style={{justifyContent: 'flex-start'}} activeOpacity={0.5}
+            renderItem={({ item }) => item.ExamYear.length > 0 && <TouchableOpacity style={{justifyContent: 'flex-start'}} activeOpacity={0.5}
               onPress={() => {
                 this.props.navigation.navigate('exam', { title: item.name, examYear: item.ExamYear,socket: this.props.route.params.socket });
               }
